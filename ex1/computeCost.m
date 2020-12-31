@@ -11,14 +11,12 @@ J = 0;
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
-data = load('ex1data1.txt');
-X = data(:,1);
-y = data(:,2);
 
-J = 1/(2*m) * (theta' * X - y).^2 ;
-
-
-
+% for i = 1:m
+%     J = J + 1/(2*m) * (theta(1) + theta(2)*X(i) - y(i))^2;
+% end
+J = 1/(2*m) * (X*theta - y).^2;
+J = sum(J);
 % =========================================================================
 
 end
