@@ -16,15 +16,11 @@ for iter = 1:num_iters
     % Hint: While debugging, it can be useful to print out the values
     %       of the cost function (computeCostMulti) and gradient here.
     %
-
-
-
-
-
-
-
-
-
+    delJ0 = 1/m*sum(X*theta - y);
+    delJn = 1/m*sum((X*theta - y).*X);
+    temp0 = theta(1) - alpha*delJ0;
+    temp1 = theta(2) - alpha*delJn;
+    theta = [temp0 temp1]';
 
 
     % ============================================================
