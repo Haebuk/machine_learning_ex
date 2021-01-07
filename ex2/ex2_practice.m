@@ -1,21 +1,18 @@
 %% Load Data
+clc; clear all;
 % The first two columns contain the exam scores and the third column contains the label.
 data = load('ex2data1.txt');
 X = data(:, [1, 2]); 
 y = data(:, 3);
-% % Find Indices of Positive and Negative Examples
-% pos = find(y==1); neg = find(y == 0);
-% % Plot Examples
-% plot(X(pos, 1), X(pos, 2), 'k+','LineWidth', 2, 'MarkerSize', 7); 
-% hold on;
-% plot(X(neg, 1), X(neg, 2), 'ko', 'MarkerFaceColor', 'y','MarkerSize', 7);
-% hold off;
-% % Labels and Legend
-% xlabel('Exam 1 score')
-% ylabel('Exam 2 score')
-% 
-% % Specified in plot order
-% legend('Admitted', 'Not admitted')
+
+% Plot the data with + indicating (y = 1) examples and o indicating (y = 0) examples.
+plotData(X, y);
+% Labels and Legend
+xlabel('Exam 1 score')
+ylabel('Exam 2 score')
+
+% Specified in plot order
+legend('Admitted', 'Not admitted')
 
 %% Setup Logistic Regression Cost & Gradient
 
@@ -42,10 +39,10 @@ test_theta = [-24; 0.2; 0.2];
 fprintf('\nCost at non-zero test theta: %f\n', cost);
 disp('Gradient at non-zero theta:'); disp(grad);
 
-%% Predict
+%% Learning parameters using fminunc
 
 %  Set options for fminunc
-options = optimoptions('fmincon','Algorithm','Quasi-Newton','GradObj', 'on', 'MaxIter', 400);
+options = optimoptions(@fminunc,'Algorithm','Quasi-Newton','GradObj', 'on', 'MaxIter', 400);
 
 %  Run fminunc to obtain the optimal theta
 %  This function will return theta and the cost 
